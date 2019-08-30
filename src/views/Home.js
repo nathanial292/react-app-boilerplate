@@ -1,22 +1,23 @@
 import React, { Component } from 'react'
-import { Container, Row, Col, Button, Card, Form, Alert } from 'react-bootstrap'
 import moment from 'moment'
+import { connect } from 'react-redux'
+import '../styles/style.scss'
 
-class Home extends Component {
-  constructor() {
-    super()
-    this.state = {
+const Home = ({ anime }) => (
+  <div>
+    <h1>Anifox</h1>
+    <ul>
+      {anime.map(item => (
+        <li key={item.id}>
+          {item.title}
+        </li>
+      ))}
+    </ul>
+  </div>
+)
 
-    }
-  }
-  
-  render() {
-    return(
-      <div>
-        <h1>Hello</h1>
-      </div>
-    )
-  }
+const mapStateToProps = state => {
+  return { anime: state.anime }
 }
 
-export default Home
+export default connect(mapStateToProps)(Home)

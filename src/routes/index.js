@@ -20,7 +20,7 @@ class App extends Component {
         <Container className='container'>
           <Helmet>
             <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
-            <title>MoeTorrent</title>
+            <title>Anifox</title>
           </Helmet>
           <Switch>
             {routes.map(({ path, exact, component: C, ...rest }) => (

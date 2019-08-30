@@ -1,7 +1,7 @@
 {
-  "name": "react-app-boilerplate",
+  "name": "anifox-client",
   "version": "1.0.0",
-  "description": "React Boilerplate",
+  "description": "Anifox client",
   "main": "src/index.js",
   "scripts": {
     "build": "cross-env NODE_ENV=development webpack --config webpack.config.js",
@@ -20,7 +20,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nathanial292/react-app-boilerplate.git"
+    "url": "git+https://github.com/nathanial292/anifox-client.git"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
@@ -59,14 +59,13 @@
   },
   "dependencies": {
     "@emotion/core": "^10.0.14",
+    "@material-ui/core": "^4.3.3",
     "axios": "^0.19.0",
-    "bootstrap": "^4.3.1",
     "check-disk-space": "^2.1.0",
     "moment": "^2.24.0",
     "node-fetch": "^2.6.0",
     "parse-torrent": "^6.1.2",
     "react": "^16.8.6",
-    "react-bootstrap": "^1.0.0-beta.9",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
     "react-hot-loader": "^4.11.1",
