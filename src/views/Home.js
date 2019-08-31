@@ -5,7 +5,7 @@ import '../styles/style.scss'
 
 const Home = ({ anime }) => (
   <div>
-    <h1>Anifox</h1>
+    <h1>Hello World</h1>
     <ul>
       {anime.map(item => (
         <li key={item.id}>

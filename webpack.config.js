@@ -33,17 +33,12 @@ const sassRule = {
           hmr: process.env.NODE_ENV === 'development',
           reloadAll: process.env.NODE_ENV === 'development'
         }
-      }
-      : {
-        loader: 'style-loader',
-        options: {
-          singleton: true
-        }
-      },
-    { loader: 'css-loader' },
-    {
-      loader: 'sass-loader'
-    }
+      } :
+      'style-loader',
+      // Translates CSS into CommonJS
+      'css-loader',
+      // Compiles Sass to CSS
+      'sass-loader',
   ]
 }
 
@@ -55,7 +50,7 @@ const baseConfig = {
   output: {
     path: buildFolder,
     filename: 'js/[name].js',
-    publicPath: '/'
+    publicPath: '/build/'
   },
 
   module: {
@@ -63,7 +58,6 @@ const baseConfig = {
   },
 
   plugins: [
-    new CleanWebpackPlugin(),
     new CopyWebpackPlugin([
       {
         from: publicFolder,
@@ -80,6 +74,7 @@ const devConfig = {
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
       template: htmlTemplateFile,
       chunksSortMode: 'dependency'
@@ -88,9 +83,15 @@ const devConfig = {
 
   devtool: 'inline-source-map',
 
+  resolve: {
+    alias: {
+      'react-dom': '@hot-loader/react-dom',
+    },
+  },
+
   entry: [
     '@babel/polyfill',
-    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
+    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=2000',
     resolve(sourceFolder, 'index')
   ],
 
@@ -114,6 +115,7 @@ const prodConfig = {
   },
 
   plugins: [
+    new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: 'css/[name].css'
     }),

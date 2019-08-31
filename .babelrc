@@ -3,7 +3,6 @@
     "react-hot-loader/babel",
     "@babel/plugin-syntax-dynamic-import",
     "react-loadable/babel",
-    "emotion"
   ],
   "presets": [
     "@babel/preset-react",

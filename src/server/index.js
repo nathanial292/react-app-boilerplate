@@ -10,7 +10,7 @@ const PORT = process.env.PORT
 app.use(cors())
 
 // Paths
-const projectRoot = resolve(__dirname)
+const projectRoot = resolve('./')
 const buildFolder = resolve(projectRoot, 'build')
 
 // Body parser
@@ -21,11 +21,6 @@ app.use('/', expressStaticGzip('build', {
     enableBrotli: true,
     orderPreference: ['br']
 }))
-
-// Main route
-app.get('/', (req, res) => {
-  res.sendFile(buildFolder + '/index.html')
-})
 
 if (process.env.NODE_ENV === 'development') {
   const webpack = require('webpack')
@@ -39,9 +34,17 @@ if (process.env.NODE_ENV === 'development') {
       stats: false
     })
   )  
-  app.use(require('webpack-hot-middleware')(compiler))
+  app.use(require('webpack-hot-middleware')(compiler, {
+    log: false,
+    path: "/__webpack_hmr",
+    heartbeat: 1000
+  }))
 }
 
+// Main route
+app.get('*', (req, res) => {
+  res.sendFile(buildFolder + '/index.html')
+})
 
 const errorHandler = (err, req, res, next) => {
   console.error(err);

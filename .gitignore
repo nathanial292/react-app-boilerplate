@@ -2,7 +2,3 @@ node_modules
 yarn.lock
 build
 public/torrents.json
-<<<<<<< HEAD
-=======
-.env
->>>>>>> ef18f75... 1.0.0
